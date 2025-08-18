@@ -1,266 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farah Dahir | Data Scientist</title>
-  <link rel="shortcut icon" type="image/svg" href="img/favicon.png"/>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-    }
-    .header {
-      background-color: #fafafc;
-      padding: 20px;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farah Dahir | Data Scientist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    .header p{
-    margin: 2px 0 8px 0; /* Adjust the top and bottom margins as needed */
-    }
+        :root {
+            --background-color-light: #f7f7f7;
+            --text-color-light: #333;
+            --card-background-light: #fff;
+            --border-color-light: #e0e0e0;
+            --secondary-text-light: #666;
+            --toggle-icon-color-light: #ffffff; /* Color for icons in light mode */
+            --toggle-icon-color-dark: #333333; /* Color for icons in dark mode */
+        }
 
-    .header h1{
-    margin: 2px 0 10px 0; /* Adjust the top and bottom margins as needed */
-    }
+        .dark-mode {
+            --background-color-light: #1a202c;
+            --text-color-light: #e2e8f0;
+            --card-background-light: #2d3748;
+            --border-color-light: #4a5568;
+            --secondary-text-light: #a0aec0;
+            --toggle-icon-color-light: #333333; /* Color for icons in light mode (swapped for dark mode) */
+            --toggle-icon-color-dark: #ffffff; /* Color for icons in dark mode (swapped for dark mode) */
+        }
 
-    .job {
-      font-size: 18px;
-    }
-    .main {
-      padding: 20px;
-    }
-    .skills {
-      list-style: none;
-      padding: 0;
-    }
-    .skills li {
-      display: inline-block;
-      margin: 3px;
-      padding: 5px;
-      background-color: #fcf2e3;
-      border-radius: 3px;
-    }
-    .section {
-      margin-bottom: 20px;
-    }
-    .card-container{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 40px;
-  }
-  .card{
-    width:380px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
-    margin: 10px;
-  }
-  .card img{
-    width: 100%;
-    height: auto;
-    
-  }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-  .card-content ul.project-type,
-  .card-content h3,
-  .card-content p {
-  margin: 2px 0 8px 0; /* Adjust the top and bottom margins as needed */
-  }
+        .card {
+            background-color: var(--card-background-light);
+            border: 1px solid var(--border-color-light);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
 
+        .text-secondary {
+            color: var(--secondary-text-light);
+        }
 
+        /* Toggle switch styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px; /* Slimmer width */
+            height: 28px; /* Slimmer height */
+        }
 
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-  .card-content{
-    padding: 10px;
-  }
-  .card-content h3{
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  .card-content p{
-    color: #666;
-    font-size: 15px;
-    line-height: 1.3;
-  }
-  .project-type {
-    list-style: none;
-    padding: 0;
-  }
-  .project-type li {
-    display: inline-block;
-    padding: 3px;
-    color: #f9ac40;
-  }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 28px; /* Adjusted border-radius */
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 4px; /* Padding for icons */
+        }
 
-  .read-me {
-    list-style: none;
-    padding: 0;
-  }
-  .read-me li {
-    display: inline-block;
-    font-size: 14px;
-    color: #284cc4;
-  }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px; /* Slimmer knob */
+            width: 20px; /* Slimmer knob */
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            border-radius: 50%;
+        }
 
-  .footerContainer {
-    padding: 20px;
-    margin-bottom: 80px;
-  }
-  .end-paragraph{
-    font-size: 16px;
-  }
-  .socialmedia{
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  .socialmedia a{
-    text-decoration: none;
-    color: #f9ac40;
-  }
-  </style>
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(22px); /* Adjusted for slimmer toggle */
+            -ms-transform: translateX(22px);
+            transform: translateX(22px);
+        }
+
+        .slider .fa-sun, .slider .fa-moon {
+            position: absolute;
+            font-size: 14px; /* Icon size */
+            transition: opacity 0.4s ease;
+        }
+
+        .slider .fa-sun {
+            left: 8px;
+            color: var(--toggle-icon-color-light);
+            opacity: 1;
+        }
+
+        .slider .fa-moon {
+            right: 8px;
+            color: var(--toggle-icon-color-dark);
+            opacity: 0;
+        }
+
+        input:checked + .slider .fa-sun {
+            opacity: 0;
+        }
+
+        input:checked + .slider .fa-moon {
+            opacity: 1;
+        }
+    </style>
 </head>
-<body>
-  <header class="header">
-    <img src="img/profile.png" alt="profile photo" width="100">
-    <h1>Farah Dahir</h1>
-    <P class="job">Data Analyst (Special Assignment) @ KRA</P>
-    <p>Nairobi, KE</p>
-    <a href="https://github.com/farahdahir"><img src="img/github.svg"></a>
-    <a href="https://www.linkedin.com/in/farah-h-dahir"><img src="img/linkedin.svg"></a>
-    <a href="mailto:farahhdahir@gmail.com"><img src="img/mail.svg"></a>
-    <P>Working on a range of projects and exploring the use of data science<br>and machine learning across different fields, including risk analytics and business.</P>
-    <ul class="skills">
-      <li>Python</li>
-      <li>SQL</li>
-      <li>Tableau</li>
-      <li>AWS</li>
-      <li>Machine/Deep Learning</li>
-      <li>Statistics</li>
-      <li>Data Mining</li>
-    </ul>
-  </header>
-  <main class="main">
-    <section class="section">
-      <h2>Projects</h2>
-    </section>
-    <div class="card-container">
-      <a href="https://github.com/farahdahir/Salifort_Motors" style="text-decoration: none; color: inherit;">
-        <div class="card">
-            <img src="img/ds_salifort_motors.jpg" alt="Optimizing Employee Retention for Salifort Motors">
-            <div class="card-content">
-              <ul class="project-type">
-                <li><strong style="font-size: 14px;">Classification</strong></li>
-                <li><strong style="font-size: 14px;">Statistical Analysis</strong></li>
-              </ul>
-              <h3>Optimizing Employee Retention for Salifort Motors</h3>
-              <p>
-                Used Human Resources (HR) data, to built a predictive model to anticipate turnover, informing strategic decisions and enhancing satisfaction. Data emerged as a strategic asset, shaping HR practices for organizational success.
-              </p>
-              <ul class="read-me">
-                <li>Read More →</li>
-              </ul>
-            </div>
-          </div>
-      </a>
-      <a href="https://github.com/farahdahir/Hyper-AI-Fund" style="text-decoration: none; color: inherit;">
-        <div class="card">
-            <img src="img/ds_hyper_ai_fund.jpg" alt="Customer Interest Prediction for Hyper Artificial Intelligence Fund">
-            <div class="card-content">
-              <ul class="project-type">
-                <li><strong style="font-size: 14px;">Classification</strong></li>
-                <li><strong style="font-size: 14px;">PCA</strong></li>
-              </ul>
-              <h3>Customer Interest Prediction for Hyper Artificial Intelligence Fund</h3>
-              <p>
-                Developed ML model to predict customer interest levels for a new financial product based on historical call data. The solution supports CRM integration, helping the sales team prioritize leads and minimize outreach to uninterested customers
-              </p>
-              <ul class="read-me">
-                <li>Read More →</li>
-              </ul>
-            </div>
-          </div>
-      </a>
-      <div class="card">
-        <img src="img/ds_risk.jpg" alt="Risk Scoring Engine">
-        <div class="card-content">
-          <ul class="project-type">
-            <li><strong style="font-size: 14px;">Machine Learning</strong></li>
-            <li><strong style="font-size: 14px;">NDA</strong></li>
-          </ul>
-          <h3>Risk Scoring Engine</h3>
-          <p>
-            A Risk Engine that enabled strategic audit targeting by identifying high-risk profiles, improving resource allocation and compliance monitoring. Due to confidentiality agreements, data and implementation details are not publicly available.
-          </p>
-          <ul class="read-me">
-            <li>NDA ↹</li>
-          </ul>
+<body class="p-4 md:p-6 lg:p-8 pt-4 md:pt-6 lg:pt-8"> <!-- Reduced top padding -->
+    <div class="max-w-7xl mx-auto">
+        <!-- Toggle Switch -->
+        <div class="flex justify-end mb-8">
+            <label class="toggle-switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider round">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </span>
+            </label>
         </div>
-      </div>
-      <a href="https://github.com/farahdahir/Automatidata" style="text-decoration: none; color: inherit;">
-        <div class="card">
-            <img src="img/ds_automatidata.jpg" alt="Predicting NYC Taxi Ride Duration & Gratuities">
-            <div class="card-content">
-              <ul class="project-type">
-                <li><strong style="font-size: 14px;">Regression</strong></li>
-                <li><strong style="font-size: 14px;">Classification</strong></li>
-                <li><strong style="font-size: 14px;">Hypothesis-testing</strong></li>
-              </ul>
-              <h3>Predicting NYC Taxi Ride Duration & Gratuities</h3>
-              <p>
-                Supporting NYC taxi drivers in achieving sustainable income by understanding rider motivations, with future enhancements aimed at predicting specific tip amounts. Built regression and classification models to predict ride durations and customers likely to tip.
-              </p>
-              <ul class="read-me">
-                <li>Read More →</li>
-              </ul>
+
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <div class="relative w-32 h-32 mx-auto rounded-full overflow-hidden mb-4">
+                <img src="img/profile.png" alt="Farah Dahir" class="absolute inset-0 w-full h-full object-cover">
             </div>
-          </div>
-      </a>
-      <a href="https://github.com/farahdahir/SpaceX_Falcon9" style="text-decoration: none; color: inherit;">
-        <div class="card">
-            <img src="img/ds_spacex.jpg" alt="Space X Falcon 9 First Stage Landing Prediction">
-            <div class="card-content">
-              <ul class="project-type">
-                <li><strong style="font-size: 14px;">Classification</strong></li>
-                <li><strong style="font-size: 14px;">Plotly</strong></li>
-                <li><strong style="font-size: 14px;">Request(API)</strong></li>
-              </ul>
-              <h3>Space X Falcon 9 First Stage Landing Prediction</h3>
-              <p>
-                With Falcon 9 launch costs notably lower than competitors, this project provides valuable insights for potential bidders against SpaceX in the space launch industry by predicting the successful landing of the Falcon 9 first stage.
-              </p>
-              <ul class="read-me">
-                <li>Read More →</li>
-              </ul>
+            <h1 class="text-3xl font-bold mb-1">FARAH DAHIR</h1>
+            <p class="text-secondary text-lg mb-2">Data Analyst (Special Assignment) @ KRA</p>
+            <p class="text-secondary text-md flex items-center justify-center mb-4">
+                <i class="fas fa-map-marker-alt mr-2"></i>Nairobi, KE
+            </p>
+            <div class="flex justify-center space-x-4 mb-6">
+                <a href="https://github.com/farahdahir" class="text-secondary hover:text-gray-800 text-2xl"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/farah-h-dahir" class="text-secondary hover:text-blue-600 text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:farahhdahir@gmail.com" class="text-secondary hover:text-green-600 text-2xl"><i class="fas fa-envelope"></i></a>
             </div>
-          </div>
-      </a>
-      <!-- ADD NEW PROJET HERE. <a to /a> -->
+            <p class="text-secondary max-w-2xl mx-auto">
+                Working on a range of projects and exploring the use of data science and machine learning across different fields, including risk analytics and business.
+            </p>
+            <div class="flex flex-wrap justify-center mt-6 space-x-2">
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">Python</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">Machine Learning</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">SQL</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">Tableau</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">AWS</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">Statistics</span>
+                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full mb-2 dark:bg-gray-700 dark:text-gray-300">Data Mining</span>
+            </div>
+        </header>
+
+        <!-- Projects Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-semibold mb-8">PROJECTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: Optimizing Employee Retention -->
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="img/ds_salifort_motors.png" alt="Employee Retention" class="rounded-full mr-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Optimizing Employee Retention for Salifort Motors</h3>
+                            </div>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            Used Human Resources (HR) data, to built a predictive model to anticipate turnover, informing strategic decisions and enhancing satisfaction. Data emerged as a strategic asset, shaping HR practices for organizational success.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap text-sm text-secondary mb-4">
+                            <span class="mr-4 flex items-center"><i class="fas fa-chart-pie mr-1"></i> Classification</span>
+                            <span class="mr-4 flex items-center"><i class="fas fa-calculator mr-1"></i> Statistics</span>
+                        </div>
+                        <a href="https://github.com/farahdahir/Salifort_Motors" class="text-blue-600 text-sm font-medium">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Customer Interest Prediction -->
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="img/ds_hyper_ai_fund.png" alt="Customer Interest Prediction" class="rounded-full mr-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Customer Interest Prediction for Hyper A.I Fund</h3>
+                            </div>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            Developed ML model to predict customer interest levels for a new financial product based on historical call data. The solution supports CRM integration, helping the sales team prioritize leads and minimize outreach to uninterested customers.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap text-sm text-secondary mb-4">
+                            <span class="mr-4 flex items-center"><i class="fas fa-shapes mr-1"></i> Segmentation</span>
+                            <span class="mr-4 flex items-center"><i class="fas fa-down-left-and-up-right-to-center mr-1"></i> PCA</span>
+                        </div>
+                        <a href="https://github.com/farahdahir/Hyper-AI-Fund" class="text-blue-600 text-sm font-medium">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Risk Scoring Engine -->
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="img/ds_risk.png" alt="Risk Scoring Engine" class="rounded-full mr-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Risk Scoring Engine</h3>
+                            </div>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            A Risk Engine that enabled strategic audit targeting by identifying high-risk profiles, improving resource allocation and compliance monitoring. Due to confidentiality agreements, data and implementation details are not publicly available.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap text-sm text-secondary mb-4">
+                            <span class="mr-4 flex items-center"><i class="fas fa-lock mr-1"></i> Classified</span>
+                        </div>
+                        <span class="mr-4 flex items-center">NDA ↹</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Predicting NYC NYC Taxi Ride Duration & Gratuities -->
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="img/ds_automatidata.png" alt="Taxi Ride Duration" class="rounded-full mr-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Predicting NYC Taxi Ride Duration & Gratuities</h3>
+                            </div>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            Supporting NYC taxi drivers in achieving sustainable income by understanding rider motivations, with future enhancements aimed at predicting specific tip amounts. Built regression and classification models to predict ride durations and customers likely to tip.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap text-sm text-secondary mb-4">
+                            <span class="mr-4 flex items-center"><i class="fas fa-chart-line mr-1"></i> Regression</span>
+                            <span class="mr-4 flex items-center"><i class="fas fa-chart-pie mr-1"></i> Classification</span>
+                        </div>
+                        <a href="https://github.com/farahdahir/Automatidata" class="text-blue-600 text-sm font-medium">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Project 5: SpaceX Falcon 9 First Stage Landing Prediction -->
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <img src="img/ds_spacex.png" alt="SpaceX Falcon 9" class="rounded-full mr-4">
+                            <div>
+                                <h3 class="font-semibold text-lg">Space X Falcon 9 First Stage Landing Prediction</h3>
+                            </div>
+                        </div>
+                        <p class="text-secondary text-sm mb-4">
+                            With Falcon 9 launch costs notably lower than competitors, this project provides valuable insights for potential bidders against SpaceX in the space launch industry by predicting the successful landing of the Falcon 9 first stage.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex flex-wrap text-sm text-secondary mb-4">
+                            <span class="mr-4 flex items-center"><i class="fas fa-database mr-1"></i> Extraction</span>
+                            <span class="mr-4 flex items-center"><i class="fas fa-chart-pie mr-1"></i> Classification</span>
+                        </div>
+                        <a href="https://github.com/farahdahir/SpaceX_Falcon9" class="text-blue-600 text-sm font-medium">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="text-left text-secondary text-sm py-8">
+            <p class="mb-2 text-base font-bold">Thanks for stopping by!</p>
+            <p class="mb-4">
+                Feel free to reach out at <a href="mailto:farahhdahir@gmail.com" class="text-secondary font-normal"><strong><font color="#515151">farahhdahir@gmail.com</font></strong></a> and stay connected with me.<br>I'm always down for a coffee and a nice chat!
+            </p>
+            <p class="mb-1">
+                <strong class="text-[#f9ac40] font-semibold"><a href="https://github.com/farahdahir" target="_blank">Github</a></strong>
+                <font color="#818181">&nbsp; &nbsp; |&nbsp; &nbsp;&nbsp;</font>
+                <strong class="text-[#f9ac40] font-semibold"><a href="https://www.linkedin.com/in/farah-h-dahir" target="_blank">LinkedIn</a></strong>
+                <font color="#818181">&nbsp; &nbsp; |&nbsp; &nbsp;&nbsp;</font>
+                <strong class="text-[#f9ac40] font-semibold"><a href="https://www.instagram.com/farahefow" target="_blank">Instagram</a></strong>
+            </p>
+            <p>Created & designed by Farah H. Dahir</p>
+            <p>© 2025 Farah</p>
+        </footer>
     </div>
-  </main>
-  <div class="footerContainer">
-    <div class="copyright">
-      <h2 >Thanks for stopping by!</h2>
-      <div class="end-paragraph" style="font-size: 14px;">
-        <font color="#3f3f3f">Feel free to reach out at</font>
-        <a href="mailto:farahhdahir@gmail.com" style="text-decoration: none;"> <strong><font color="#515151">farahhdahir@gmail.com</font></strong></a>
-        <font color="#3f3f3f">and stay connected with me. I'm<br>always down for a coffee and a nice chat!</font>
-      </div>
-      <div class="socialmedia" >
-        <strong style="font-size: 14px;"><a href="https://github.com/farahdahir" target="_blank">Github</a></strong>
-        <font color="#818181">&nbsp; &nbsp; |&nbsp; &nbsp;&nbsp;</font>
-        <strong style="font-size: 14px;"><a href="https://www.linkedin.com/in/farah-h-dahir" target="_blank">LinkedIn</a></strong>
-        <font color="#818181">&nbsp; &nbsp; |&nbsp; &nbsp;&nbsp;</font>
-        <strong style="font-size: 14px;"><a href="https://www.instagram.com/farahefow" target="_blank">Instagram</a></strong>
-      </div>
-      <div class="copyright" style="text-align:left;">
-        <font size="2"><font color="#515151">Created &amp; designed </font><font color="#515151">by Farah H. Dahir</font><br><font color="#515151">© 2025 Farah</font></font>
-      </div>
-    </div>
-  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    body.classList.remove('dark-mode');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
